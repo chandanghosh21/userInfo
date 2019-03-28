@@ -77,7 +77,8 @@ function deleteRow(CN) {
  let row = document.getElementsByClassName(CN)[0];
  row.remove();
  var splits = str.split('-');
- arr.splice(splits[1],1)
+ //arr.splice(splits[1],1)
+ delete arr[splits[1]];
  console.log(arr);
 };
 
@@ -88,11 +89,15 @@ function showName(y) {
   var table = document.createElement("table");
   table.style.width = '20%';
   table.setAttribute('border', '1');
+  console.log(arr.length);
   for(let i=0; i<arr.length; i++) {
     var tr = document.createElement("tr");
+    if(arr[i]===undefined) {
+      console.log('Got the empty item');
+    }
     var nameObjCopy = arr[i];
     var nameObjKey  = Object.keys(nameObjCopy);
-    for(let j=0; j<nameObjKey.length; j++) {
+    for(let j=0; j<nameObjKey.length-1; j++) {
       var td = document.createElement("td");
       var name = document.createTextNode(nameObjCopy[nameObjKey[j]]);
       td.appendChild(name);

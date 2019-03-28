@@ -1,31 +1,31 @@
 <html>
 
 <body>
-   
- fName <input type="text" id="TF1" name="fname">
-lName <input type="text" id="TF2" name="lname">
-   <button type="submit" onclick="myFunc('TF1','TF2','para')" id="sbmt" name="Submit">Submit</button>
-    <button type="submit" onclick="clearFunc('TF1')" id="clr">Clear</button>
-    <button type="submit" onclick="tableRender('para1')">Try it</button>
-    <button type="submit" onclick="showName('td1')">Show Name</button>
+  <center>
+  <div id="form" style="width:100%; height: 12.5%; background-color:aliceblue" > 
+    <table>
+      <th><td>User Information Form</td></th>
+      <tr><td>First Name:</td><td><input type="text" id="TF1" name="fname"></td></tr>
+      <tr><td>Last Name:</td><td><input type="text" id="TF2" name="lname"></td></tr>
+    </table>      
+  </div>
+  <div id="button">
+      <button type="button" onclick="myFunc('TF1','TF2','para')" id="sbmt" name="Submit">Submit</button>
+      <button type="button" onclick="clearFunc('TF1','TF2')" id="clr">Clear</button>
+      <button type="button" onclick="showName('para1')">Show Name</button>
+  </div>
+<div id="userInfo" style="width:100%; height:100%;">
+  <div style="width:100%; height:20%;">
+  
+  </div>  
+  <div id="para" style="width:100%; height:40%;" >
 
-<p id="para">Name will show here</p> <p id="para1">Name will show here1</p>
+  </div>
+  <div id="para1" style="width:100%; height:40%;">
 
-
-<table>
-  <th>Name</th>
-  <tr><td id="td1">Hi</td></tr>
-</table>
-
-<script>
-/*
-var test = { name: "Chandan", age : 36};
-console.log(test["name"]);
-var copy = Object.keys(test);
-console.log(copy);
-console.log(test[copy[0]]); */
-</script>
-
+  </div>
+</div> 
+</center> 
 <script src="javaScript.js"></script>
 </body>
 
