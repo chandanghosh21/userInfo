@@ -79,12 +79,7 @@ function deleteRow(CN) {
  var splits = str.split('-');
  arr.splice(splits[1],1)
  console.log(arr);
-/* if(arr.length===0) {
-  tbl = document.getElementsByClassName('toc');
-  console.log('table class');
-  var ParentEL = tbl.par
- }*/
-}
+};
 
 
 function showName(y) {
