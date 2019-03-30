@@ -1,24 +1,22 @@
 var arr = [];
+var counter = 1;
 
 function myFunc(x,z,p) {
   
   var name = {
+    id   : counter,
     fname: document.getElementById(x).value || '',
-    lname: document.getElementById(z).value || ''
+    lname: document.getElementById(z).value || '',
+    action: 'actionDelete'
   };
   if(!name.fname || !name.lname) {
     alert('FN or LN can not be empty');
     return false;
   }
-  name.action = 'actionDelete';
-  console.log(name);
   arr.push(name);
-  console.log(arr);
   clearFunc(x,z);
   tableRender(p,name);
 }
-
-
 
 
 function clearFunc(x,z) {
@@ -27,7 +25,7 @@ function clearFunc(x,z) {
 }
 
 
-var counter = 0;
+
 function tableRender(p,name) {
   console.log("wait! I am creating Table")
   var tarea = document.getElementById(p);
@@ -43,7 +41,7 @@ function tableRender(p,name) {
     table = tarea.getElementsByTagName("table")[0];
   }
   var tr = document.createElement("tr");
-  let rowNumber = "row-" + counter;
+  let rowNumber = "row- + counter";
   tr.className = rowNumber;
   counter++;
   var nameObjKey  = Object.keys(name);
@@ -54,13 +52,12 @@ function tableRender(p,name) {
       data = document.createElement("button");
       data.innerHTML = 'Delete';
       data.addEventListener('click', () => {
-      deleteRow(rowNumber);
+      deleteRow(rowNumber,name,toc);
       })
 
     } else {
       data = document.createTextNode(name[nameObjKey[j]]);
     }
-    //console.log(name);
     td.appendChild(data);
     tr.appendChild(td);
   }
@@ -68,33 +65,34 @@ function tableRender(p,name) {
   if (tables.length === 0) {
     tarea.appendChild(table);
   }
-  console.log(table);
 }
 
-function deleteRow(CN) {
- console.log("I am clicking on delete button");
- var str = CN;
- let row = document.getElementsByClassName(CN)[0];
+function deleteRow(rowNumber,user,toc) {
+ console.log(arr)
+ let row = document.getElementsByClassName(rowNumber)[0];
  row.remove();
- var splits = str.split('-');
- //arr.splice(splits[1],1)
- delete arr[splits[1]];
- console.log(arr);
+ arr = arr.filter(usr => user.id != usr.id)
+ if(arr.length===0) {
+   let tbl = document.getElementsByClassName(toc)[0];
+   tbl.remove();
+ }
 };
+
 
 
 function showName(y) {
   console.log("wait! I am creating Table")
   var tarea = document.getElementById(y);
+  var tables = tarea.getElementsByTagName("table")
+  if (tables.length > 0) {  
+    table = tables[0];
+    table.remove();
+  }
   var table = document.createElement("table");
   table.style.width = '20%';
-  table.setAttribute('border', '1');
-  console.log(arr.length);
+  table.setAttribute('border', '1'); 
   for(let i=0; i<arr.length; i++) {
     var tr = document.createElement("tr");
-    if(arr[i]===undefined) {
-      console.log('Got the empty item');
-    }
     var nameObjCopy = arr[i];
     var nameObjKey  = Object.keys(nameObjCopy);
     for(let j=0; j<nameObjKey.length-1; j++) {
@@ -105,6 +103,5 @@ function showName(y) {
       table.appendChild(tr);
   }
   tarea.appendChild(table);
-  console.log(table);
   }
 };
